@@ -1,0 +1,41 @@
+#include<iostream>
+#include<stdio.h>
+#include<stack>
+using namespace std;
+void insert(stack<int> &s, int element){
+    //base case
+    if(s.empty()){
+        s.push(element);
+    }
+    else{
+        int a=s.top();
+        s.pop();
+        insert(s,element);
+        s.push(a);
+    }
+}
+int main(){
+    stack <int> s;
+    s.push(7);
+    s.push(1);
+    s.push(4);
+    s.push(5);
+  
+    int element=9;
+    insert(s,element);
+    
+
+    //another stack is created to reverse the stack element
+    stack<int> st;
+    while(!s.empty()){
+        st.push(s.top());
+        s.pop();
+    }
+
+    //loop to print the reversed element
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+    return 0;
+}
